@@ -50,6 +50,6 @@ Route::middleware('auth:sanctum')->group(function() {
 });
 
 
-Route::get( '/name',function() {
-    return 'mazen'; 
-});
+// Route::get( '/name',function() {
+//     return 'mazen'; 
+// });
