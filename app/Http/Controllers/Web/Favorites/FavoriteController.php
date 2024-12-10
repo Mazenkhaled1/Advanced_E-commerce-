@@ -38,8 +38,6 @@ class FavoriteController extends Controller
     
         return response()->json(['message' => 'Product added to favorites'], 200);
     }
-    
-
     public function removeFromFavorites(Request $request, $productId)
     {
         $user = auth()->user(); 
