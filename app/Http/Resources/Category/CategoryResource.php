@@ -21,7 +21,7 @@ class CategoryResource extends JsonResource
             'id'       => $this->id,
             'name'     => $this->name,
             'products' => ProductResource::collection($this->whenLoaded('products')),
-            'user_id'  => $user->id
+            'user_id'  => $user->id ?? null 
 
         ];
     }

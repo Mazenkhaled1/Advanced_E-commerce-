@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\Categories\CategoryController as CategoriesCategoryController;
 use App\Http\Controllers\Web\Auth\AuthController;
 use App\Http\Controllers\Web\Cart\CartController as CartCartController;
 use App\Http\Controllers\Web\Categories\CategoryController;
@@ -50,6 +51,9 @@ Route::middleware('auth:sanctum')->group(function() {
 });
 
 
-// Route::get( '/name',function() {
-//     return 'mazen'; 
-// });
+Route::prefix('dasboard')->group(function() {
+    Route::post('/Category' , [CategoriesCategoryController::class , 'store']) ; 
+    Route::put('/Category/{id}' , [CategoriesCategoryController::class , 'update']) ; 
+    Route::delete('/Category/{id}' , [CategoriesCategoryController::class , 'destroy']) ; 
+});
+
