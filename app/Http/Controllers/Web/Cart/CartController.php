@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Web\Cart;
 
+use App\Jobs\Product_Out_Of_Stock_Job;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,8 +34,10 @@ class CartController extends Controller
         }
        
         if ($product->quantity <= 0) {
+            dispatch(new Product_Out_Of_Stock_Job($product )) ; 
             return response()->json(['message' => 'Product is out of stock'], 400);
         }
+         
         $cartItem = $user->cartProducts()->where('product_id', $productId)->first();
     
         if ($cartItem) {

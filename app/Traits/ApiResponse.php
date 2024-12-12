@@ -34,7 +34,7 @@ trait ApiResponse
             'data' => $data 
          ] , $code ) ; 
     }
-    public function error ($data , $message , $code ) 
+    public function error ($data  , $message , $code ) 
     {
         return response()->json([
             'status_code' => $code , 

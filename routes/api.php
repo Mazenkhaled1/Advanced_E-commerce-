@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dashboard\Categories\CategoryController as CategoriesCategoryController;
+use App\Http\Controllers\Dashboard\Products\ProductController as ProductsProductController;
 use App\Http\Controllers\Web\Auth\AuthController;
 use App\Http\Controllers\Web\Cart\CartController as CartCartController;
 use App\Http\Controllers\Web\Categories\CategoryController;
@@ -52,8 +53,11 @@ Route::middleware('auth:sanctum')->group(function() {
 
 
 Route::prefix('dasboard')->group(function() {
-    Route::post('/Category' , [CategoriesCategoryController::class , 'store']) ; 
-    Route::put('/Category/{id}' , [CategoriesCategoryController::class , 'update']) ; 
-    Route::delete('/Category/{id}' , [CategoriesCategoryController::class , 'destroy']) ; 
+    Route::post('/category' , [CategoriesCategoryController::class , 'store']) ; 
+    Route::put('/category/{id}' , [CategoriesCategoryController::class , 'update']) ; 
+    Route::delete('/category/{id}' , [CategoriesCategoryController::class , 'destroy']) ; 
+    Route::post('/product' , [ProductsProductController::class , 'store']); 
+    Route::put('/product/{id}' , [ProductsProductController::class , 'update']); 
+    Route::delete('/product/{id}' , [ProductsProductController::class , 'destroy']); 
 });
 

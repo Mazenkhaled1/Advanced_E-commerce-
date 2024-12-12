@@ -20,6 +20,11 @@ class CategoryController extends Controller
     }
     public function destroy($id , CategoriesService $categoriesService) 
     {
-        return $this->success($categoriesService->destroy($id)) ;
+        $category = $categoriesService->destroy($id);
+
+        if ($category) {
+            return $this->apiResponse(null , $categoriesService->destroy($id) ); 
+        } 
+            return $this->error(null, 'Category not found', 404);
     } 
 }

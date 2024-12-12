@@ -36,7 +36,6 @@ class CategoriesService
                     'category' => new CategoryResource($category)  
             ]; 
         }
-        return $this->error(null , 'not found' , 404) ; 
     }
 
     public function destroy ($id) 
@@ -45,11 +44,7 @@ class CategoriesService
         if($category) 
         {
             $category->delete() ; 
-            return [
-                'category deleted successfully'
-            ];
+            return 'category deleted successfully' ;
         }
-        return $this->error(null , 'not found' , 404) ; 
-
     }
  }
