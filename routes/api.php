@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\BannedController;
 use App\Http\Controllers\Dashboard\Categories\CategoryController as CategoriesCategoryController;
 use App\Http\Controllers\Dashboard\Products\ProductController as ProductsProductController;
 use App\Http\Controllers\Web\Auth\AuthController;
@@ -37,7 +38,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function() {
 
 
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware(['auth:sanctum' , 'check.ban'])->group(function() {
     Route::get('/categoriesWithProducts', [CategoryController::class , 'categoryWithProducts']);
     Route::get('/categories', [CategoryController::class , 'categories']);
     Route::get('product/{id}'  , [ProductController::class , 'singleProduct']) ; 
@@ -59,5 +60,7 @@ Route::prefix('dasboard')->group(function() {
     Route::post('/product' , [ProductsProductController::class , 'store']); 
     Route::put('/product/{id}' , [ProductsProductController::class , 'update']); 
     Route::delete('/product/{id}' , [ProductsProductController::class , 'destroy']); 
+    Route::post('/unbanUser/{id}', [BannedController::class, 'unbanUser']);
+
 });
 

@@ -41,5 +41,22 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+    protected static function booted()
+    {
+
+        static::saving(function ($user) { // hena btstghal lw lesa mafesh data f h3ml save l new data k store aw ama a3mel update 
+            if (is_null($user->address) || $user->address === '') {
+                $user->is_banned = true;
+            }
+        });
+        static::retrieved(function ($user) {    // de bstkhdmha lw b3ml login f b3ml retriev 34an a3ml check 
+            if (is_null($user->address) || $user->address === '') {
+                $user->is_banned = true;
+                $user->save(); 
+            }
+        });
+    }
+
+
 
 }
