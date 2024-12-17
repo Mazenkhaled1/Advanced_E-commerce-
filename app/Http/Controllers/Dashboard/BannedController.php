@@ -8,13 +8,11 @@ use Illuminate\Http\Request;
 
 class BannedController extends Controller
 {
-
-
     public function unbanUser(Request  $request , $id) 
     {
         $user = User::find($id) ;
         if ($user->is_banned) {
-            $user->is_banned = false;  // إلغاء الحظر
+            $user->is_banned = false; 
             $user->save();
 
             return $this->apiResponse($user , 'user unban Successfully' , 200) ; 
