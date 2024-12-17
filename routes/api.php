@@ -1,16 +1,16 @@
 <?php
 
-use App\Http\Controllers\Dashboard\BannedController;
-use App\Http\Controllers\Dashboard\Categories\CategoryController as CategoriesCategoryController;
-use App\Http\Controllers\Dashboard\Products\ProductController as ProductsProductController;
-use App\Http\Controllers\Web\Auth\AuthController;
-use App\Http\Controllers\Web\Cart\CartController as CartCartController;
-use App\Http\Controllers\Web\Categories\CategoryController;
-use App\Http\Controllers\Web\Favorites\FavoriteController;
-use App\Http\Controllers\Web\Order\OrderController;
-use App\Http\Controllers\Web\Products\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\Auth\AuthController;
+use App\Http\Controllers\Dashboard\BannedController;
+use App\Http\Controllers\Web\Orders\OrderController;
+use App\Http\Controllers\Web\Products\ProductController;
+use App\Http\Controllers\Web\Favorites\FavoriteController;
+use App\Http\Controllers\Web\Categories\CategoryController;
+use App\Http\Controllers\Web\Cart\CartController as CartCartController;
+use App\Http\Controllers\Dashboard\Products\ProductController as ProductsProductController;
+use App\Http\Controllers\Dashboard\Categories\CategoryController as CategoriesCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,7 +38,7 @@ Route::prefix('auth')->controller(AuthController::class)->group(function() {
 
 
 
-Route::middleware(['auth:sanctum' , 'check.ban'])->group(function() {
+Route::middleware('auth:sanctum' )->group(function() {
     Route::get('/categoriesWithProducts', [CategoryController::class , 'categoryWithProducts']);
     Route::get('/categories', [CategoryController::class , 'categories']);
     Route::get('product/{id}'  , [ProductController::class , 'singleProduct']) ; 
@@ -49,7 +49,7 @@ Route::middleware(['auth:sanctum' , 'check.ban'])->group(function() {
     Route::get('carts' , [CartCartController::class , 'index']);
     Route::post('addToCart/{productId}' , [CartCartController::class , 'addToCart']);
     Route::post('removeFromCart/{productId}' , [CartCartController::class  , 'removeFromCart']);
-    Route::post('checkout' , [OrderController::class  , 'checkout']) ; 
+    Route::post('/checkout' , [OrderController::class  , 'checkout']) ; 
 });
 
 
@@ -61,7 +61,5 @@ Route::prefix('dasboard')->group(function() {
     Route::put('/product/{id}' , [ProductsProductController::class , 'update']); 
     Route::delete('/product/{id}' , [ProductsProductController::class , 'destroy']); 
     Route::post('/unbanUser/{id}', [BannedController::class, 'unbanUser']);
-
 });
 
-Route::post('/unbanUser/{id}', [BannedController::class, 'unbanUser']);
