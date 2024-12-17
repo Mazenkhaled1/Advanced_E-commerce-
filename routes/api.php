@@ -63,3 +63,8 @@ Route::prefix('dasboard')->group(function() {
     Route::post('/unbanUser/{id}', [BannedController::class, 'unbanUser']);
 });
 
+
+
+route::get('/mazne' , function() {
+    return 2 ; 
+});
