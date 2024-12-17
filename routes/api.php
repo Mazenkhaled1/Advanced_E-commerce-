@@ -65,6 +65,6 @@ Route::prefix('dasboard')->group(function() {
 
 
 
-route::get('/mazne' , function() {
-    return 2 ; 
-});
+// route::get('/mazne' , function() {
+//     return 2 ; 
+// });
